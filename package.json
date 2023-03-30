@@ -1,0 +1,34 @@
+{
+  "name": "bilibili-stats",
+  "version": "1.0.0",
+  "description": " 动态生成B站用户/视频简介SVG图像",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zmh-program/bilibili-stats.git"
+  },
+  "keywords": [
+    "bilibili",
+    "svg",
+    "statistic"
+  ],
+  "author": "zmh-program",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zmh-program/bilibili-stats/issues"
+  },
+  "homepage": "https://github.com/zmh-program/bilibili-stats#readme",
+  "dependencies": {
+    "axios": "^1.3.2",
+    "ejs": "^3.1.9",
+    "ejs-locals": "^1.0.2",
+    "express": "^4.18.2",
+    "log4js": "^6.7.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.14.6"
+  }
+}
