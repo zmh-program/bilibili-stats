@@ -7,7 +7,7 @@
 
 1. 
 > ```commandline
-> curl -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0" https://api.bilibili.com/x/space/wbi/acc/info?mid=1984532193
+> curl -k -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0" https://api.bilibili.com/x/space/wbi/acc/info?mid=1984532193
 > ```
 > ```json
 > {
