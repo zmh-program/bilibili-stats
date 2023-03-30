@@ -69,5 +69,4 @@ class Cache {
   }
 }
 
-const cache = new Cache(expiration);
-export const memo = cache.memo;
+export const cache = new Cache(expiration);
