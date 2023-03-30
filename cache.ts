@@ -1,7 +1,7 @@
-const conf = require("./config");
-const logger = (require("log4js")).getLogger("Cache");
+import { expiration } from "./config";
+import  { getLogger } from "log4js";
 
-logger.level = "debug";
+const logger = getLogger("cache");
 
 
 class Cache {
@@ -49,7 +49,7 @@ class Cache {
     }, this.expiration / 2);
   }
 
-  wrap(func: (...params: any[]) => Promise<any>): (...params: any[]) => Promise<any> {
+  memo(func: (...params: any[]) => Promise<any>): (...params: any[]) => Promise<any> {
     /**
      * Async Function Cache.
      */
@@ -70,4 +70,4 @@ class Cache {
   }
 }
 
-export const cache = new Cache(conf.expiration);
+export const memo = new Cache(expiration).memo;
