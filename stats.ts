@@ -9,7 +9,6 @@ axios.defaults.headers.common = {
 
 export const getUser = cache.memo("user", async (uid: number) => {
     const response = await axios.get(`x/space/wbi/acc/info?mid=${uid}`);
-    const result = {};
     const {
         data: {
             name: name,
@@ -18,14 +17,10 @@ export const getUser = cache.memo("user", async (uid: number) => {
             sign: sign,
             level: level,
         },
-        label: {
-            "img_label_uri_hans_static": vip,
-        },
-        official: {
-            title: official,
-        },
-        "face": avatar,
-        "top_photo": background,
+        label: label,
+        official: official,
+        face: avatar,
+        top_photo: background,
     } = response.data;
     return {
         name,
@@ -33,7 +28,7 @@ export const getUser = cache.memo("user", async (uid: number) => {
         face,
         sign,
         level,
-        vip,
+        label,
         official,
         avatar,
         background,
