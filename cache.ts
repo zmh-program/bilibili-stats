@@ -2,6 +2,7 @@ import { expiration } from "./config";
 import  { getLogger } from "log4js";
 
 const logger = getLogger("cache");
+logger.level = "info";
 
 
 class Cache {
@@ -13,7 +14,7 @@ class Cache {
     this.uptime();
   }
 
-  get(key: string): undefined | any { /** @ts-ignore **/
+  get(key: string): undefined | any {  /** @ts-ignore **/
     const value = this.caches[key];
     if (this.exist(key)) {  //@ts-ignore
       return JSON.parse(value.value);
@@ -44,24 +45,22 @@ class Cache {
         if (_this.caches[key].expiration < (new Date().getTime() / 1000)) {
           _this.remove(key); n++;
         }
-        if (n > 0) logger.debug(`Clean ${n} Caches`);
+        if (n > 0) logger.info(`Clean ${n} Caches`);
       }
     }, this.expiration / 2);
   }
 
-  memo(func: (...params: any[]) => Promise<any>): (...params: any[]) => Promise<any> {
+  memo(name: string, func: (...params: any[]) => Promise<any>): (...params: any[]) => Promise<any> {
     /**
      * Async Function Cache.
      */
-
     const _this: Cache = this;
-    const name: string = func.name[0] === "_" ? func.name.slice(1) : func.name;
     return async function (...params : any[]) {
-      const key: string = name + params.toString();
+      const key: string = `${name}_${params}`;
       if (_this.exist(key)) {
+        logger.debug(`Hit Cache of ${name}`);
         return _this.get(key);
-      } else {
-        /** @ts-ignore **/
+      } else {  /** @ts-ignore **/
         const response: any = await func(...params);
         _this.set(key, response);
         return response;
@@ -70,4 +69,5 @@ class Cache {
   }
 }
 
-export const memo = new Cache(expiration).memo;
+const cache = new Cache(expiration);
+export const memo = cache.memo;

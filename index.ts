@@ -4,6 +4,7 @@ const express = require('express');
 // import stats from './stats';
 
 const logger = getLogger("server");
+logger.level = 'info';
 
 const app = express();
 app.use(express.static('public'));
