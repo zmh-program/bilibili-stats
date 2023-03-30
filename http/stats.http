@@ -1,0 +1,35 @@
+GET https://api.bilibili.com/x/relation/stat?vmid=163637592
+Host: api.bilibili.com
+Accept: application/json
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0
+
+
+# > HTTP/1.1 200 OK
+# > Date: Thu, 30 Mar 2023 11:15:38 GMT
+# > Content-Type: application/json; charset=utf-8
+# > Transfer-Encoding: chunked
+# > Connection: keep-alive
+# > Access-Control-Allow-Credentials: true
+# > Access-Control-Allow-Methods: GET,POST,PUT,DELETE
+# > Access-Control-Allow-Origin:
+# > Bili-Status-Code: 0
+# > Bili-Trace-Id: 4994f8312284db87
+# > Vary: Origin
+# > X-Bili-Trace-Id: 42c8dd1230fd08244994f8312284db87
+# > Expires: Thu, 30 Mar 2023 11:15:37 GMT
+# > Cache-Control: no-cache
+# > X-Cache-Webcdn: BYPASS from blzone01
+# > Content-Encoding: br
+# >
+# > {
+# >   "code": 0,
+# >   "message": "0",
+# >   "ttl": 1,
+# >   "data": {
+# >     "mid": 163637592,
+# >     "following": 271,
+# >     "whisper": 0,
+# >     "black": 0,
+# >     "follower": 10725811
+# >   }
+# > }

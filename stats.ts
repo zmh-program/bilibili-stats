@@ -13,28 +13,31 @@ export const getUser = cache.memo("user", async (uid: number) => {
         data: {
             name: name,
             sex: sex,
-            face: face,
+            face: avatar,
             sign: sign,
             level: level,
+            vip: {
+                label: {
+                    "img_label_uri_hans_static": vip,
+                },
+            },
+            official: {
+                title: official,
+            },
+            top_photo: background,
         },
-        label: label,
-        official: official,
-        face: avatar,
-        top_photo: background,
     } = response.data;
     return {
-        name,
-        sex,
-        face,
-        sign,
-        level,
-        label,
-        official,
-        avatar,
-        background,
+        name,    sex,
+        level,   vip,
+        sign,    official,
+        avatar,  background,
     };
 });
 
 export const getVideo = cache.memo("video", async (username: string, repo: string) => {
 
 });
+
+
+getUser(1984532193).then(console.log);

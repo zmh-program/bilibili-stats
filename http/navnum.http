@@ -1,0 +1,45 @@
+https://api.bilibili.com/x/space/navnum?mid=163637592
+Host: api.bilibili.com
+Accept: application/json
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0
+
+
+# > HTTP/1.1 200 OK
+# > Date: Thu, 30 Mar 2023 11:13:24 GMT
+# > Content-Type: application/json; charset=utf-8
+# > Transfer-Encoding: chunked
+# > Connection: keep-alive
+# > Bili-Status-Code: 0
+# > Bili-Trace-Id: 4da96dc85a1ad903
+# > X-Bili-Trace-Id: 73d36b0512725dff4da96dc85a1ad903
+# > IDC: shjd
+# > Expires: Thu, 30 Mar 2023 11:13:23 GMT
+# > Cache-Control: no-cache
+# > X-Cache-Webcdn: BYPASS from blzone01
+# > Content-Encoding: br
+# >
+# > {
+# >   "code": 0,
+# >   "message": "0",
+# >   "ttl": 1,
+# >   "data": {
+# >     "video": 47,
+# >     "bangumi": 6,
+# >     "cinema": 5,
+# >     "channel": {
+# >       "master": 0,
+# >       "guest": 0
+# >     },
+# >     "favourite": {
+# >       "master": 24,
+# >       "guest": 24
+# >     },
+# >     "tag": 1,
+# >     "article": 2,
+# >     "playlist": 0,
+# >     "album": 103,
+# >     "audio": 0,
+# >     "pugv": 0,
+# >     "season_num": 1
+# >   }
+# > }
