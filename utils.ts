@@ -1,4 +1,10 @@
-import axios from "axios/index";
+export function cut(content: string, length: number): string[] {
+    let idx: number = 0, char: number = 0; while (idx + 1 < length) {
+        idx += /\w/i.test(content.charAt(idx)) ? 0.45 : 1;
+        char ++;
+    }
+    return content.length <= char ? [ content ] : [ content.substring(0, char), ...cut(content.substring(char), length) ];
+}
 
 export namespace ua {
     export const list: string[] = [

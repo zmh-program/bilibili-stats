@@ -1,5 +1,5 @@
 import { cache } from "./cache";
-import { request } from "./utils";
+import { request, cut } from "./utils";
 
 export const getUser = cache.memo("user", async (uid: number) => {
     // TODO 1: BASE INFO (info.http)
@@ -26,6 +26,7 @@ export const getUser = cache.memo("user", async (uid: number) => {
         data : { follower: follower, following: following }
     } = ( await request.get(`x/relation/stat?vmid=${uid}`) ).data;
 
+    sign = cut(sign, 18);
     vip = request.rewrite(vip);
     avatar = request.rewrite(avatar);
     background = request.rewrite(background);
