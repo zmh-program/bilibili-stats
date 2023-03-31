@@ -1,6 +1,7 @@
 import { port } from "./config";
 import { getLogger } from 'log4js';
 import { getUser, getVideo } from './stats';
+import { ua } from './utils';
 import { createProxyMiddleware } from "http-proxy-middleware";
 const express = require('express');
 
@@ -30,7 +31,11 @@ app.get('/repo/:user/:repo/', async function (req: any, res: any) {
 app.use('/proxy', createProxyMiddleware({
     target: "https://i0.hdslb.com/bfs",
     changeOrigin: true,
-    pathRewrite: { '^/proxy': '' },
+    pathRewrite: { '^/proxy': '' }, // @ts-ignore
+    onProxyReq: (proxy, request, response) => {
+        proxy.removeHeader('referer');
+        proxy.setHeader('user-agent', ua.get());
+    }
 }))
 
 

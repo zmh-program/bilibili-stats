@@ -26,6 +26,6 @@ export namespace request {
     }
 
     export function rewrite(url: string): string {
-        return url.replace('https://i0.hdslb.com/bfs', '/proxy');
+        return url.replace(/http:\/\/i\d\.hdslb\.com\/bfs/i, '/proxy').replace(/https:\/\/i\d\.hdslb\.com\/bfs/i, '/proxy');
     }
 }
