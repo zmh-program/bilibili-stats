@@ -40,4 +40,3 @@ app.use('/proxy', createProxyMiddleware({
 
 
 app.listen(port, () => logger.info(`Starting deployment server at http://127.0.0.1:${port}/.`));
-
