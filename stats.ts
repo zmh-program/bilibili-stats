@@ -1,43 +1,43 @@
 import { cache } from "./cache";
 import axios from "axios";
-
-axios.defaults.baseURL = "https://api.bilibili.com";
-axios.defaults.headers.common = {
-    'Accept': 'application/json',
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/111.0',
-}
+import { request } from "./utils";
 
 export const getUser = cache.memo("user", async (uid: number) => {
-    const response = await axios.get(`x/space/wbi/acc/info?mid=${uid}`);
+    // TODO 1: BASE INFO (info.http)
+    console.log(( await axios.get(`x/space/wbi/acc/info?mid=${uid}`) ))
     const {
         data: {
-            name: name,
-            sex: sex,
-            face: avatar,
-            sign: sign,
-            level: level,
-            vip: {
-                label: {
-                    "img_label_uri_hans_static": vip,
-                },
-            },
-            official: {
-                title: official,
-            },
-            top_photo: background,
+            name: name,       sex: sex,
+            level: level,     sign: sign,
+            face: avatar,     top_photo: background,
+            vip: { label: { "img_label_uri_hans_static": vip } },
+            official: { title: official },
         },
-    } = response.data;
+    } = ( await request.get(`x/space/wbi/acc/info?mid=${uid}`) ).data;
+
+    // TODO 2: POST DATA (navnum.http)
+    const {
+        data: {
+            video: video,       audio: audio,
+            article: article,   album: album,
+        }
+    } = ( await request.get(`x/space/navnum?mid=${uid}`) ).data;
+
+    // TODO 3: STATS DATA (stats.http)
+    const {
+        data : { follower: follower, following: following }
+    } = ( await request.get(`x/relation/stat?vmid=${uid}`) ).data;
+
     return {
-        name,    sex,
-        level,   vip,
-        sign,    official,
-        avatar,  background,
+        name,    sex,        level,   vip,
+        sign,    official,   avatar,  background,
+        video,   article,    audio,   album,
+        follower,            following,
     };
 });
 
 export const getVideo = cache.memo("video", async (username: string, repo: string) => {
 
 });
-
 
 getUser(1984532193).then(console.log);
