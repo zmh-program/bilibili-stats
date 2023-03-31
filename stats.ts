@@ -1,11 +1,9 @@
 import { cache } from "./cache";
-import axios from "axios";
 import { request } from "./utils";
 
 export const getUser = cache.memo("user", async (uid: number) => {
     // TODO 1: BASE INFO (info.http)
-    console.log(( await axios.get(`x/space/wbi/acc/info?mid=${uid}`) ))
-    const {
+    let {
         data: {
             name: name,       sex: sex,
             level: level,     sign: sign,
@@ -16,7 +14,7 @@ export const getUser = cache.memo("user", async (uid: number) => {
     } = ( await request.get(`x/space/wbi/acc/info?mid=${uid}`) ).data;
 
     // TODO 2: POST DATA (navnum.http)
-    const {
+    let {
         data: {
             video: video,       audio: audio,
             article: article,   album: album,
@@ -24,9 +22,13 @@ export const getUser = cache.memo("user", async (uid: number) => {
     } = ( await request.get(`x/space/navnum?mid=${uid}`) ).data;
 
     // TODO 3: STATS DATA (stats.http)
-    const {
+    let {
         data : { follower: follower, following: following }
     } = ( await request.get(`x/relation/stat?vmid=${uid}`) ).data;
+
+    vip = request.rewrite(vip);
+    avatar = request.rewrite(avatar);
+    background = request.rewrite(background);
 
     return {
         name,    sex,        level,   vip,
@@ -39,5 +41,3 @@ export const getUser = cache.memo("user", async (uid: number) => {
 export const getVideo = cache.memo("video", async (username: string, repo: string) => {
 
 });
-
-getUser(1984532193).then(console.log);

@@ -16,12 +16,16 @@ export namespace request {
     const axios = require("axios");
     axios.defaults.baseURL = "https://api.bilibili.com";
 
-    export async function get(url: string) {
+    export async function get(url: string): Promise<any> {
         return await axios.get(url, {
             headers : {
                 'Accept': 'application/json',
                 'User-Agent': ua.get(),
             }
         });
+    }
+
+    export function rewrite(url: string): string {
+        return url.replace('https://i0.hdslb.com/bfs', '/proxy');
     }
 }

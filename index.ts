@@ -1,7 +1,8 @@
 import { port } from "./config";
 import { getLogger } from 'log4js';
+import { getUser, getVideo } from './stats';
+import { createProxyMiddleware } from "http-proxy-middleware";
 const express = require('express');
-// import stats from './stats';
 
 const logger = getLogger("server");
 logger.level = 'info';
@@ -12,9 +13,9 @@ app.set('views', __dirname + '/views');
 app.set("view engine", "ejs");
 
 
-app.get('/user/:user/', async function (req: any, res: any) {
+app.get('/user/:uid/', async function (req: any, res: any) {
     res.type('svg');
-
+    res.render('user', await getUser(req.params['uid']));
 });
 
 app.get('/repo/:user/:repo/', async function (req: any, res: any) {
@@ -26,5 +27,12 @@ app.get('/repo/:user/:repo/', async function (req: any, res: any) {
 
 });
 
-app.listen(port, () =>
-    logger.info(`Starting deployment server at http://127.0.0.1:${port}/.`));
+app.use('/proxy', createProxyMiddleware({
+    target: "https://i0.hdslb.com/bfs",
+    changeOrigin: true,
+    pathRewrite: { '^/proxy': '' },
+}))
+
+
+app.listen(port, () => logger.info(`Starting deployment server at http://127.0.0.1:${port}/.`));
+
