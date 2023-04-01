@@ -26,12 +26,13 @@ export const getUser = cache.memo("user", async (uid: number) => {
         data : { follower: follower, following: following }
     } = ( await request.get(`x/relation/stat?vmid=${uid}`) ).data;
 
-    sign = cut(sign, 18);
+    sign = cut(sign, 28);
     vip = request.rewrite(vip);
     avatar = request.rewrite(avatar);
     background = request.rewrite(background);
 
     return {
+        uid,
         name,    sex,        level,   vip,
         sign,    official,   avatar,  background,
         video,   article,    audio,   album,
