@@ -1,6 +1,6 @@
 import { port } from "./config";
 import { getLogger } from 'log4js';
-import { getUser, getTag } from './stats';
+import { getUser } from './stats';
 import { ua } from './utils';
 import { createProxyMiddleware } from "http-proxy-middleware";
 const express = require('express');
@@ -23,14 +23,6 @@ app.get('/user/:uid/', async function (req: any, res: any) {
     }
 });
 
-app.get('/tag/:uid/', async function (req: any, res: any) {
-    res.type('svg');
-    try {
-        res.render('tag', await getTag(req.params['uid']));
-    } catch (e) {
-        res.send('/');
-    }
-});
 
 app.use('/proxy', createProxyMiddleware({
     target: "https://i0.hdslb.com/bfs",

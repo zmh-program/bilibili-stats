@@ -41,15 +41,3 @@ export const getUser = cache.memo("user", async (uid: number) => {
         follower,            following,
     };
 });
-
-export const getTag = cache.memo("tag", async (uid: number) => {
-    let {
-        data: {
-            vip: {
-                label: {
-                    "img_label_uri_hans_static": vip,
-                },
-            },
-        },
-    } = ( await request.get(`x/space/wbi/acc/info?mid=${uid}`) ).data;
-});
