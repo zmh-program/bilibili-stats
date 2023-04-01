@@ -42,6 +42,14 @@ export const getUser = cache.memo("user", async (uid: number) => {
     };
 });
 
-export const getVideo = cache.memo("video", async (username: string, repo: string) => {
-
+export const getTag = cache.memo("tag", async (uid: number) => {
+    let {
+        data: {
+            vip: {
+                label: {
+                    "img_label_uri_hans_static": vip,
+                },
+            },
+        },
+    } = ( await request.get(`x/space/wbi/acc/info?mid=${uid}`) ).data;
 });

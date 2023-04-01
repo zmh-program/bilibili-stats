@@ -1,6 +1,6 @@
 import { port } from "./config";
 import { getLogger } from 'log4js';
-import { getUser, getVideo } from './stats';
+import { getUser, getTag } from './stats';
 import { ua } from './utils';
 import { createProxyMiddleware } from "http-proxy-middleware";
 const express = require('express');
@@ -16,16 +16,20 @@ app.set("view engine", "ejs");
 
 app.get('/user/:uid/', async function (req: any, res: any) {
     res.type('svg');
-    res.render('user', await getUser(req.params['uid']));
+    try {
+        res.render('user', await getUser(req.params['uid']));
+    } catch (e) {
+        res.render('error');
+    }
 });
 
-app.get('/repo/:user/:repo/', async function (req: any, res: any) {
+app.get('/tag/:uid/', async function (req: any, res: any) {
     res.type('svg');
-
-    const dark: boolean = req.query['theme'] === 'dark',
-        username = req.params['user'],
-        repo = req.params['repo'];
-
+    try {
+        res.render('tag', await getTag(req.params['uid']));
+    } catch (e) {
+        res.send('/');
+    }
 });
 
 app.use('/proxy', createProxyMiddleware({
