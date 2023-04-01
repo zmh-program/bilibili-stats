@@ -7,18 +7,14 @@
         .official { font-size: 14px; font-weight: 600; max-width: 300px; height: max-content; word-wrap: anywhere }
         .description { font-size: 12px; font-weight: 600; max-width: 300px; height: max-content; word-wrap: anywhere }
         .info { font-size: 12px; font-weight: 600 }
-        .level { fill: #fff; background: red; width: 20px; height: 20px; padding: 2px }
-        .oct-icon{display:block;fill:#8b849e;}
-        .stat{font:600 14px 'Segoe UI',Ubuntu,"Helvetica Neue",Sans-Serif;}
-        .anim{opacity:0;animation:fadeInAnimation 0.3s ease-in-out forwards;}
-        .icon{fill:#4c71f2;display:none;}
-        .lang-name{font:400 11px "Segoe UI",Ubuntu,Sans-Serif}
-        #rect-mask rect{animation:fadeInAnimation 1s ease-in-out forwards;}
+        .type { font-size: 14px; font-weight: 600 }
+        .anim{ opacity:0;animation:fadeInAnimation 0.3s ease-in-out forwards }
+        .icon{ fill:#4c71f2 }
         @keyframes fadeInAnimation{from{opacity:0;}to{opacity:1;}}
     </style>
     <rect x="0.5" y="0.5" rx="4.5" height="99%" stroke="#e4e2e2" fill="#f4f5f7" width="659" stroke-opacity="1"/>
-    <svg x="-4" y="2" height="180" width="660" style="border-radius: 10px; overflow: hidden" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><image x="0" y="0" height="204" width="1320" xlink:href="<%- background %>"></image></svg>
-    <g data-testid="up-info" transform="translate(0, 55)"><svg x="0" y="0">
+    <svg x="-4" y="2" height="180" width="660" style="border-radius: 10px 10px 4px 4px; overflow: hidden" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><image x="0" y="0" height="204" width="1320" xlink:href="<%- background %>"></image></svg>
+    <g data-testid="base-info" transform="translate(0, 55)"><svg x="0" y="0">
             <g transform="translate(0, 0)"><g class="anim" style="animation-delay: 200ms" transform="translate(6.5, 140)">
                     <rect x="0" y="0" rx="4.5" height="280" stroke="#e4e2e2" fill="#fff" width="400" stroke-opacity="1"/>
                     <svg x="15" y="15" xmlns="http://www.w3.org/2000/svg" width="64" height="64" style="border-radius: 50%; overflow: hidden" xmlns:xlink="http://www.w3.org/1999/xlink"><image x="0" y="0" height="64" width="64" xlink:href="<%- avatar %>"></image></svg>
@@ -40,8 +36,48 @@
             <g transform="translate(0, 0)"><g class="anim" style="animation-delay: 800ms" transform="translate(36, <%- 325 + (sign.length * 14)%>)">
                     <text class="info" x="0" y="0">性别: <%- sex %></text>
                 </g></g>
-            <g transform="translate(0, 0)"><g class="anim" style="animation-delay: 800ms" transform="translate(36, <%- 350 + (sign.length * 16)%>)">
+            <g transform="translate(0, 0)"><g class="anim" style="animation-delay: 800ms" transform="translate(36, <%- 350 + (sign.length * 14)%>)">
                     <text class="info" x="0" y="0">UID: <%- uid %></text>
+                </g></g>
+        </svg>
+    </g>
+    <g data-testid="follow-info" transform="translate(405, 55)"><svg x="0" y="0">
+            <g transform="translate(0, 0)"><g class="anim" style="animation-delay: 1000ms" transform="translate(6.5, 140)">
+                    <rect x="0" y="0" rx="4.5" height="80" stroke="#e4e2e2" fill="#fff" width="240" stroke-opacity="1"/>
+                </g></g>
+            <g transform="translate(0, 0)"><g transform="translate(58, 175)">
+                    <text class="info anim" style="animation-delay: 1400ms" x="80" y="0"><%- following %></text>
+                    <text class="info anim" style="animation-delay: 1200ms" x="0" y="0">关注数</text>
+                </g></g>
+            <g transform="translate(0, 0)"><g transform="translate(58, 195)">
+                    <text class="info anim" style="animation-delay: 1400ms" x="80" y="0"><%- follower %></text>
+                    <text class="info anim" style="animation-delay: 1200ms" x="0" y="0">粉丝数</text>
+                </g></g>
+        </svg>
+    </g>
+    <g data-testid="post-info" transform="translate(405, 141)"><svg x="0" y="0">
+            <g transform="translate(0, 0)"><g class="anim" style="animation-delay: 1400ms" transform="translate(6.5, 140)">
+                    <rect x="0" y="0" rx="4.5" height="194" stroke="#e4e2e2" fill="#fff" width="240" stroke-opacity="1"/>
+                </g></g>
+            <g transform="translate(0, 0)"><g transform="translate(48, 165)">
+                    <svg class="icon anim" style="animation-delay: 1600ms" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 512 512"><path d="M374.79 308.78L457.5 367a16 16 0 0022.5-14.62V159.62A16 16 0 00457.5 145l-82.71 58.22A16 16 0 00368 216.3v79.4a16 16 0 006.79 13.08z" fill="none" stroke="rgb(0,182,247)" stroke-linecap="round" stroke-linejoin="round" stroke-width="38"/><path d="M268 384H84a52.15 52.15 0 01-52-52V180a52.15 52.15 0 0152-52h184.48A51.68 51.68 0 01320 179.52V332a52.15 52.15 0 01-52 52z" fill="none" stroke="rgb(0,182,247)" stroke-miterlimit="10" stroke-width="38"/></svg>
+                    <text class="type anim" style="animation-delay: 1600ms" x="30" y="19">视频</text>
+                    <text class="type anim" style="animation-delay: 1800ms" x="120" y="19"><%- video %></text>
+                </g></g>
+            <g transform="translate(0, 0)"><g transform="translate(48, 205)">
+                    <svg class="icon anim" style="animation-delay: 1600ms" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 512 512"><path xmlns="http://www.w3.org/2000/svg" d="M157.65 192H88a8 8 0 00-8 8v112a8 8 0 008 8h69.65a16 16 0 0110.14 3.63l91.47 75a8 8 0 0012.74-6.46V119.83a8 8 0 00-12.74-6.44l-91.47 75a16 16 0 01-10.14 3.61zM352 320c9.74-19.41 16-40.81 16-64 0-23.51-6-44.4-16-64M400 368c19.48-34 32-64 32-112s-12-77.7-32-112" fill="none" stroke="rgb(0,182,247)" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/></svg>
+                    <text class="type anim" style="animation-delay: 1600ms" x="30" y="19">音频</text>
+                    <text class="type anim" style="animation-delay: 1800ms" x="120" y="19"><%- audio %></text>
+                </g></g>
+            <g transform="translate(0, 0)"><g transform="translate(48, 245)">
+                    <svg class="icon anim" style="animation-delay: 1600ms" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 512 512"><path xmlns="http://www.w3.org/2000/svg" d="M368 415.86V72a24.07 24.07 0 00-24-24H72a24.07 24.07 0 00-24 24v352a40.12 40.12 0 0040 40h328" fill="none" stroke="rgb(0,182,247)" stroke-linejoin="round" stroke-width="32"/><path xmlns="http://www.w3.org/2000/svg" d="M416 464h0a48 48 0 01-48-48V128h72a24 24 0 0124 24v264a48 48 0 01-48 48z" fill="none" stroke="rgb(0,182,247)" stroke-linejoin="round" stroke-width="32"/><path xmlns="http://www.w3.org/2000/svg" fill="none" stroke="rgb(0,182,247)" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M240 128h64M240 192h64M112 256h192M112 320h192M112 384h192"/><path xmlns="http://www.w3.org/2000/svg" d="M176 208h-64a16 16 0 01-16-16v-64a16 16 0 0116-16h64a16 16 0 0116 16v64a16 16 0 01-16 16z" fill="rgb(0,182,247)"/></svg>
+                    <text class="type anim" style="animation-delay: 1600ms" x="30" y="19">文章</text>
+                    <text class="type anim" style="animation-delay: 1800ms" x="120" y="19"><%- article %></text>
+                </g></g>
+            <g transform="translate(0, 0)"><g transform="translate(48, 285)">
+                    <svg class="icon anim" style="animation-delay: 1600ms" xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 512 512"><rect xmlns="http://www.w3.org/2000/svg" x="64" y="176" width="384" height="256" rx="28.87" ry="28.87" fill="none" stroke="rgb(0,182,247)" stroke-linejoin="round" stroke-width="32"/><path xmlns="http://www.w3.org/2000/svg" stroke="rgb(0,182,247)" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M144 80h224M112 128h288"/></svg>
+                    <text class="type anim" style="animation-delay: 1600ms" x="30" y="19">专栏</text>
+                    <text class="type anim" style="animation-delay: 1800ms" x="120" y="19"><%- album %></text>
                 </g></g>
         </svg>
     </g>

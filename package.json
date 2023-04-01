@@ -1,7 +1,7 @@
 {
   "name": "bilibili-stats",
   "version": "1.0.0",
-  "description": " 动态生成B站用户/视频简介SVG图像",
+  "description": " 动态生成B站用户简介SVG图像",
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

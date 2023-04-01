@@ -1,5 +1,5 @@
 import { cache } from "./cache";
-import { request, cut } from "./utils";
+import { request, cut, convert } from "./utils";
 
 export const getUser = cache.memo("user", async (uid: number) => {
     // TODO 1: BASE INFO (info.http)
@@ -30,6 +30,8 @@ export const getUser = cache.memo("user", async (uid: number) => {
     vip = request.rewrite(vip);
     avatar = request.rewrite(avatar);
     background = request.rewrite(background);
+    follower = convert(follower);
+    following = convert(following);
 
     return {
         uid,

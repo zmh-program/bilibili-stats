@@ -5,6 +5,7 @@ export function cut(content: string, length: number): string[] {
     }
     return content.length <= char ? [ content ] : [ content.substring(0, char), ...cut(content.substring(char), length) ];
 }
+export const convert = (n: number): string => n >= 10000 ? `${(n / 10000).toFixed(1)}万` : n.toString();
 
 export namespace ua {
     export const list: string[] = [
