@@ -1,10 +1,10 @@
 <div align="center"> 
 
-# [<img src="public/favicon.png" alt="" width="64" height="64" style="transform: translateY(16px)">](https://stats.deeptrain.net) [Bilibili Stats](https://stats.deeptrain.net)
+# [<img src="public/favicon.png" alt="" width="64" height="64" style="transform: translateY(16px)">](https://bilibili.deeptrain.net) [Bilibili Stats](https://bilibili.deeptrain.net)
 
 ### 🍇 动态生成B站用户简介SVG图像
 
-### [| 👀 |](https://stats.deeptrain.net)
+### [| 👀 |](https://bilibili.deeptrain.net)
 <br>
 </div>
 
