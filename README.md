@@ -1,8 +1,15 @@
-# bilibili-stats
-🍇 动态生成B站用户简介SVG图像
+<div align="center"> 
+
+# [<img src="public/favicon.png" alt="" width="64" height="64" style="transform: translateY(16px)">](https://stats.deeptrain.net) [Bilibili Stats](https://stats.deeptrain.net)
+
+### 🍇 动态生成B站用户简介SVG图像
+
+### [| 👀 |](https://stats.deeptrain.net)
+<br>
+</div>
 
 ### 预览
-![何同学](/screenshot/hsj.png)
+![何同学](/screenshot/he.png)
 ![Linwin](/screenshot/linwin.png)
 ![zmh](/screenshot/zmh.png)
 

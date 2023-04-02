@@ -30,7 +30,7 @@ app.use('/proxy', createProxyMiddleware({
     pathRewrite: { '^/proxy': '' },
     onProxyReq: (proxy, request, response) => {
         proxy.removeHeader('referer');
-        proxy.setHeader('user-agent', ua.get());
+        // proxy.setHeader('user-agent', ua.get());
     }
 }))
 
