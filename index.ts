@@ -1,7 +1,6 @@
 import { port } from "./config";
 import { getLogger } from 'log4js';
 import { getUser } from './stats';
-import { ua } from './utils';
 import { createProxyMiddleware } from "http-proxy-middleware";
 const express = require('express');
 
