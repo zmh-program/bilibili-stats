@@ -5,8 +5,9 @@
       @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap');
       html, body {padding: 0;margin: 0;display: flex;align-items: center;justify-content: center;gap: 8px;width: 100%;height: 100%;overflow: auto;background: #fafcf1;}
       #app {position: absolute;top: 8px;display: flex;flex-direction: column;gap: 8px;margin: 30px;width: 80%;min-width: 220px;max-width: 450px}
-      #preview {width: 100%}
-      #format {width: 100%; justify-content: center; margin-bottom: 8px}* {font-family: "Nunito", Consolas, monospace, Serif} .icon {float: right; transform: translate(8px, -6px)} .icon svg {width: 26px; height: 26px}</style><script src="https://cdn.bootcdn.net/ajax/libs/vue/3.2.47/vue.global.js"></script><script src="https://cdn.bootcdn.net/ajax/libs/element-plus/2.2.32/index.full.js"></script></head>
+      #preview svg { width: 100% }  #format {width: 100%; justify-content: center; margin-bottom: 8px}* {font-family: "Nunito", Consolas, monospace, Serif} .icon {float: right; transform: translate(8px, -6px)} .icon svg {width: 26px; height: 26px}</style>
+  <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.2.47/vue.global.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/element-plus/2.2.32/index.full.js"></script></head>
 <body>
 <div id="app">
   <el-card>
@@ -18,13 +19,14 @@
   <el-card style="display: grid">
     <a href="https://github.com/zmh-program/bilibili-stats" class="icon"><img width="32" height="32" src="/favicon.ico" alt="👀 GitHub"></a>
     <template v-if="! link"><el-empty image-size=80></el-empty></template>
-    <template v-else><el-radio-group @change="refresh" id="format" v-model="form.format"><el-radio-button border label="URL"></el-radio-button><el-radio-button border label="Markdown"></el-radio-button><el-radio-button border label="HTML"></el-radio-button><el-radio-button border label="AsciiDoc"></el-radio-button></el-radio-group><el-input readonly v-model="content"></el-input><img id="preview" :src="link" alt></template>
+    <template v-else><el-radio-group @change="refresh" id="format" v-model="form.format"><el-radio-button border label="URL"></el-radio-button><el-radio-button border label="Markdown"></el-radio-button><el-radio-button border label="HTML"></el-radio-button><el-radio-button border label="AsciiDoc"></el-radio-button></el-radio-group><el-input readonly v-model="content"></el-input><div id="preview" v-html="svg"></div></template>
   </el-card>
 </div>
 <script>
   const form = Vue.ref({ uid: 0, format: "URL" });
   const link = Vue.ref("");
   const content = Vue.ref("");
+  const svg = Vue.ref("");
   const refresh = () => {
     switch (form.value.format) {
       case "URL": content.value = link.value;break;
@@ -36,11 +38,12 @@
   Vue.createApp({
     data() {
       return {
-        form: form,
-        link: link,
-        content: content,
-        refresh: refresh,
-        generate: () => { link.value = `${location.origin}/user/${form.value.uid}/`; refresh() }
+        form, link, content, svg, refresh,
+        generate() {
+          link.value = `${location.origin}/user/${form.value.uid}/`;
+          fetch(link.value).then(async response => svg.value = await response.text());
+          refresh();
+        }
       }
     }
   }).use(ElementPlus).mount('#app');

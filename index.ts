@@ -27,7 +27,7 @@ app.get('/user/:uid/', async function (req: any, res: any) {
 app.use('/proxy', createProxyMiddleware({
     target: "https://i0.hdslb.com/bfs",
     changeOrigin: true,
-    pathRewrite: { '^/proxy': '' }, // @ts-ignore
+    pathRewrite: { '^/proxy': '' },
     onProxyReq: (proxy, request, response) => {
         proxy.removeHeader('referer');
         proxy.setHeader('user-agent', ua.get());
